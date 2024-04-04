@@ -13,9 +13,20 @@
 #ifndef SPAN_HPP
 # define SPAN_HPP
 
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <vector>
+#include <stdexcept>
+#include <cstdlib>
+#include <ctime>
+#include <unistd.h>
+
 class Span{
     private:
         int _maxNb;
+        std::vector<int> _array;
+    
     public:
         /* CONSTRUCTOR */
         Span();
@@ -28,9 +39,16 @@ class Span{
         Span    &operator=(Span const &rhs);
         /* MEMBER FUNCTIONS */
         void    addNumber(int nb);
+        void    completeArray(int nb);
         int     shortestSpan(void);
         int     longestSpan(void);
-
+        /* EXCEPTIONS */
+        class ExceptionFull : public std::exception{
+            public :
+                virtual char const	*what(void) const throw(){
+                    return ("The arrray limit has been reached");
+                }
+        };
 };
 
 #endif
